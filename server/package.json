@@ -1,0 +1,11 @@
+{
+  "name": "buddhatest-server",
+  "version": "1.0.0",
+  "description": "Buddhasoft test server on node.js for product application",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Denis Kondrachuk",
+  "license": "ISC"
+}
