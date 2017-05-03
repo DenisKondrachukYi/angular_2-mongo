@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "es2015",
+    "module": "commonjs",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -11,21 +11,20 @@
     "noEmitHelpers": true,
     "strictNullChecks": false,
     "lib": [
-      "es2015",
-      "dom"
+      "dom",
+      "es6"
     ],
     "typeRoots": [
       "node_modules/@types"
     ],
     "types": [
+      "jasmine",
       "node"
     ]
   },
   "exclude": [
     "node_modules",
-    "dist",
-    "src/**/*.spec.ts",
-    "src/**/*.e2e.ts"
+    "dist"
   ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,

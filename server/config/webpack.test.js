@@ -3,14 +3,8 @@ const path = require('path');
 /**
  * Webpack Plugins
  */
-const ProvidePlugin = require('webpack/lib/ProvidePlugin');
-const DefinePlugin = require('webpack/lib/DefinePlugin');
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
-const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
-/**
- * Webpack Constants
- */
-const ENV = process.env.ENV = process.env.NODE_ENV = 'test';
+
 /**
  * Webpack configuration
  *
@@ -123,23 +117,6 @@ module.exports = function (options) {
          * See: http://webpack.github.io/docs/configuration.html#plugins
          */
         plugins: [
-            /**
-             * Plugin: DefinePlugin
-             * Description: Define free variables.
-             * Useful for having development builds with debug logging or adding global constants.
-             *
-             * Environment helpers
-             *
-             * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
-             */
-            // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
-            new DefinePlugin({
-                'ENV': JSON.stringify(ENV),
-                'process.env': {
-                    'ENV': JSON.stringify(ENV),
-                    'NODE_ENV': JSON.stringify(ENV),
-                }
-            }),
             /**
              * Plugin LoaderOptionsPlugin (experimental)
              *

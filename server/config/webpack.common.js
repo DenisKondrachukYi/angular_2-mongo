@@ -42,7 +42,10 @@ module.exports = function(options){
                         test: /\.ts$/,
                         use: [
                             {
-                                loader: 'awesome-typescript-loader'
+                                loader: 'awesome-typescript-loader',
+                                options: {
+                                    configFileName: 'tsconfig.webpack.json'
+                                }
                             }
                         ],
                         exclude: [/\.(spec|e2e)\.ts$/]
