@@ -22,7 +22,7 @@ module.exports = function(options){
                 'server': helpers.root('') + '/index.ts'
             },
             resolve: {
-                extensions: ['.ts', '.js']
+                extensions: ['.ts', '.js', '.node']
             },
             module: {
                 rules: [
@@ -59,6 +59,10 @@ module.exports = function(options){
                     {
                         test: /\.json$/,
                         use: 'json-loader'
+                    },
+                    {
+                        test: /.node$/,
+                        use: 'node-loader'
                     }
                 ]
         },
@@ -68,6 +72,10 @@ module.exports = function(options){
          * See: http://webpack.github.io/docs/configuration.html#plugins
          */
         plugins: [
+            new webpack.DefinePlugin({
+                "typeof window": "\"object\""
+            }),
+            new webpack.IgnorePlugin(/vertx/),
             /**
              * Plugin: ForkCheckerPlugin
              * Description: Do type checking in a separate process, so webpack don't need to wait.
@@ -84,11 +92,13 @@ module.exports = function(options){
          */
         node: {
             global: true,
-                crypto: 'empty',
-                process: true,
-                module: false,
-                clearImmediate: false,
-                setImmediate: false
+            crypto: 'empty',
+            process: true,
+            module: false,
+            clearImmediate: false,
+            setImmediate: false,
+            net: "empty",
+            tls: "empty",
         },
     }
 };
