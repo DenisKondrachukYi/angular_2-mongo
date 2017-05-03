@@ -3,10 +3,10 @@ import * as http from 'http';
 const port = process.env.PORT || 3000;
 
 import * as mongo from 'mongodb';
+import { Db } from "mongodb";
 const URL = 'mongodb://localhost:27017/mydatabase';
 
-let DB = null;
-
+let DB: Db;
 
 const mongoClient = mongo.MongoClient;
 
@@ -15,22 +15,25 @@ mongoClient.connect(URL, function(err, db) {
         console.log("ERROR BOYS", err);
         return
     }
-
-    const collection = db.collection('foods');
-    collection.insertOne({name: 'taco', tasty: true}, function(err, result) {
-        collection.find({name: 'taco'}).toArray(function(err, docs) {
-            console.log(docs[0]);
-            // db.close()
-            DB = db;
-        })
-    })
+    DB = db;
+    console.log('ADDED')
 });
 
 setTimeout(() => {
    DB.collection('foods').find({name: 'taco'}).toArray((err, docs) => {
        console.log(docs[0]);
    })
-},500);
+},200);
+
+// setTimeout(() => {
+//   DB.collection('foods').insertOne({name: 'chips', tasty: false})
+// }, 1000);
+
+setTimeout(() => {
+   DB.collection('foods').find({}).toArray().then(docs => {
+       docs.forEach(doc => console.log(doc._id));
+   })
+}, 1200);
 
 // mongoose.connect('mongodb://localhost/test');
 
