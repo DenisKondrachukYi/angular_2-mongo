@@ -3,6 +3,7 @@ const helpers = require('./helpers');
 const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
 module.exports = function(options){
     return {
+            target: "node",
             /**
              * Cache generated modules and chunks to improve performance for multiple incremental builds.
              * This is enabled by default in watch mode.
@@ -18,7 +19,7 @@ module.exports = function(options){
              * See: http://webpack.github.io/docs/configuration.html#entry
              */
             entry: {
-                'app': helpers.root('') + '/index.ts'
+                'server': helpers.root('') + '/index.ts'
             },
             resolve: {
                 extensions: ['.ts', '.js']
@@ -88,6 +89,6 @@ module.exports = function(options){
                 module: false,
                 clearImmediate: false,
                 setImmediate: false
-        }
+        },
     }
 };

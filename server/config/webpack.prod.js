@@ -42,7 +42,7 @@ module.exports = function (env) {
              *
              * See: http://webpack.github.io/docs/configuration.html#output-filename
              */
-            filename: '[name].[chunkhash].js',
+            filename: '[name].bundle.js',
             /**
              * The filename of the SourceMaps for the JavaScript files.
              * They are inside the output.path directory.
