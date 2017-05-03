@@ -64,5 +64,13 @@ module.exports = function (options) {
                 options: {}
             }),
         ],
+        devServer: {
+            contentBase: helpers.root('dist'),
+            compress: true,
+            port: 9000,
+            proxy: {
+                "/": "http://localhost:8080"
+            }
+        }
     });
 };
