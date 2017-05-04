@@ -1,6 +1,7 @@
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
+import * as cors from 'cors';
 import { DataBaseConnector } from './mongo-client-wrapper';
 import {PRODUCTS_COLLECTION} from "./models/product.model";
 
@@ -19,6 +20,7 @@ class App {
 
     // Configure Express middleware.
     private middleware(): void {
+        this.express.use(cors());
         this.express.use(logger('dev'));
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({ extended: false }));
