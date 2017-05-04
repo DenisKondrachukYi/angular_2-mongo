@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "baseUrl": ".",
         "target": "es6",
         "module": "commonjs",
         "moduleResolution": "node",
@@ -14,6 +15,9 @@
             "es2015",
             "dom"
         ],
+        "paths": {
+            "mongo-client-wrapper": ["src/mongo-client-wrapper"]
+        },
         "typeRoots": [
             "node_modules/@types"
         ],

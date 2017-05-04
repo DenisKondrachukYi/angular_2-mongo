@@ -1,23 +1,35 @@
 import * as express from 'express';
 import * as http from 'http';
 const port = process.env.PORT || 3000;
+import {DataBaseConnector} from './mongo-client-wrapper';
+import {UserModel} from "./models/user.model";
 
-import * as mongo from 'mongodb';
-import { Db } from "mongodb";
 
 const URL = 'mongodb://localhost:27017/mydatabase';
 
-const mongoClient = mongo.MongoClient;
-
-const DataBase: Promise<Db> = mongoClient.connect(URL);
-
-async function getFoods() {
-    const db: Db = await DataBase;
-    const foodsArray = await db.collection('foods').find({}).toArray();
-    foodsArray.forEach(doc => console.log(doc));
+async function connectToDataBase(url) {
+    const DB = await DataBaseConnector.connectMongoDB(url);
+    return DB;
 }
 
-getFoods();
+connectToDataBase(URL).then((db) => {
+    const userData = {
+        name: 'Misha',
+        phone: '12321312'
+    };
+    const user = new UserModel(userData);
+    console.log(user.collection);
+    // db.collections().then(collections => {
+    //     console.log(collections);
+    // })
+    db.collection('default').find({}).toArray().then(array => {
+        console.log("HERE");
+        console.log(array);
+        array.forEach(user => console.log(user))
+    })
+});
+
+
 
 // mongoose.connect('mongodb://localhost/test');
 
