@@ -44,6 +44,11 @@ class App {
                 message: products
             });
         });
+        router.post('/products', async (req, res, next) => {
+            res.json({
+                message: req.body
+            });
+        });
         this.express.use('/', router);
     }
 
