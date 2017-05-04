@@ -1,0 +1,27 @@
+.card-title{
+  font-size: 16px;
+  padding: 13px!important;
+}
+.overlay{
+  background-color: rgba(0,0,0,0.5);
+  height: 50px;
+}
+
+.btn-floating{
+  background-color: transparent;
+
+}
+.btn-floating.halfway-fab{
+  text-align: center;
+  bottom: 5px;
+  right: 11px;
+}
+.shadow_0{
+  box-shadow: none;
+}
+.card-content p {
+  font-size: 12px;
+}
+.card-action a {
+  font-size: 12px;
+}
