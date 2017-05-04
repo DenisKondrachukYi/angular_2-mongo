@@ -2,15 +2,20 @@ import {DataBaseContainer} from "./db-container";
 
 export class DataBaseModel<T> extends DataBaseContainer {
 
-    public collection: string = 'default';
+    collection: string = 'default';
+
+    modelData: any = {};
 
     constructor(params: T) {
         super();
-        this.addModelToCollection(params);
+        this.setModelData(params);
     }
 
-    addModelToCollection(params = {}) {
-        // if(params)
-        //     this.dataBaseRef.collection(this.collection).insertOne(params).then(res => console.log(res));
+    setModelData(params = {}): void {
+        Object.assign(this.modelData, params)
+    }
+
+    async addToCollection(): Promise<any> {
+       return await this.dataBaseRef.collection(this.collection).insertOne(this.modelData)
     }
 }

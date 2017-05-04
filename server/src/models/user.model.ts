@@ -5,8 +5,10 @@ interface User {
     phone: string
 }
 
+const USER_COLLECTION = 'user';
+
 export class UserModel extends DataBaseModel<User> {
 
-    public collection: string = 'user'
+    collection: string = USER_COLLECTION;
 
 }

@@ -18,13 +18,12 @@ connectToDataBase(URL).then((db) => {
         phone: '12321312'
     };
     const user = new UserModel(userData);
-    console.log(user.collection);
+    // user.addToCollection();
+    // console.log(user.collection);
     // db.collections().then(collections => {
     //     console.log(collections);
     // })
-    db.collection('default').find({}).toArray().then(array => {
-        console.log("HERE");
-        console.log(array);
+    db.collection('user').find({}).toArray().then(array => {
         array.forEach(user => console.log(user))
     })
 });
