@@ -4,36 +4,20 @@ const port = process.env.PORT || 3000;
 
 import * as mongo from 'mongodb';
 import { Db } from "mongodb";
-const URL = 'mongodb://localhost:27017/mydatabase';
 
-let DB: Db;
+const URL = 'mongodb://localhost:27017/mydatabase';
 
 const mongoClient = mongo.MongoClient;
 
-mongoClient.connect(URL, function(err, db) {
-    if (err) {
-        console.log("ERROR BOYS", err);
-        return
-    }
-    DB = db;
-    console.log('ADDED')
-});
+const DataBase: Promise<Db> = mongoClient.connect(URL);
 
-setTimeout(() => {
-   DB.collection('foods').find({name: 'taco'}).toArray((err, docs) => {
-       console.log(docs[0]);
-   })
-},200);
+async function getFoods() {
+    const db: Db = await DataBase;
+    const foodsArray = await db.collection('foods').find({}).toArray();
+    foodsArray.forEach(doc => console.log(doc));
+}
 
-// setTimeout(() => {
-//   DB.collection('foods').insertOne({name: 'chips', tasty: false})
-// }, 1000);
-
-setTimeout(() => {
-   DB.collection('foods').find({}).toArray().then(docs => {
-       docs.forEach(doc => console.log(doc._id));
-   })
-}, 1200);
+getFoods();
 
 // mongoose.connect('mongodb://localhost/test');
 
