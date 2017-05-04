@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ProductService} from "../../services/product.service";
+import {Product} from "../../services/product.model";
 
 @Component({
   selector: 'app-product-list',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductListComponent implements OnInit {
 
-  constructor() { }
+  modalShow : boolean
+
+  public productsList: Array<Product>
+
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
+    this.fillProductsList()
+  }
+
+  fillProductsList(){
+    this.productsList = this.productService.productsList.slice()
+  }
+
+  modalShows(product: Product) {
+    this.modalShow = true
   }
 
 }

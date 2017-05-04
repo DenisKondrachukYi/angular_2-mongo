@@ -8,4 +8,4 @@ import {routing} from "./product.routing";
   ],
   declarations: [ProductComponent]
 })
-export default class productPageModule { }
+export default class ProductPageModule { }

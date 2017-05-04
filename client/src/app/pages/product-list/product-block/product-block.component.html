@@ -1,0 +1,18 @@
+<div class="col s4 m4">
+  <div class="card">
+    <div class="card-image">
+      <img [src]="product.image">
+      <div class="overlay">
+        <span class="card-title">{{ product.title }}</span>
+        <a class="btn-floating halfway-fab shadow_0">{{ product.price }} $ </a>
+      </div>
+    </div>
+    <div class="card-content">
+      <p>{{ product.description }}</p>
+    </div>
+    <div class="card-action">
+      <a routerLink="/pages/product-page">Edit</a>
+      <a (click)="onDelete(product)">Delete</a>
+    </div>
+  </div>
+</div>

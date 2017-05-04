@@ -5,7 +5,7 @@ import {PagesComponent} from "./pages.component";
 @NgModule({
   imports: [
     CommonModule,
-    routing,
+    routing
   ],
   declarations: [
     PagesComponent

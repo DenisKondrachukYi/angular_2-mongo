@@ -10,4 +10,4 @@ import {routing} from "./add-product.routing";
   ],
   declarations: [AddProductComponent]
 })
-export default class addProductModule { }
+export default class AddProductModule { }
