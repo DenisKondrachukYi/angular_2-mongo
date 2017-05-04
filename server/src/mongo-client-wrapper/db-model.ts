@@ -1,8 +1,8 @@
 import {DataBaseContainer} from "./db-container";
 
-export class DataBaseModel<T> extends DataBaseContainer {
+export abstract class DataBaseModel<T> extends DataBaseContainer {
 
-    collection: string = 'default';
+    protected collection: string = 'default';
 
     modelData: any = {};
 

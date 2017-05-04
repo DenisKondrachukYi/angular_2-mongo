@@ -1,31 +1,44 @@
-import * as express from 'express';
 import * as http from 'http';
 const port = process.env.PORT || 3000;
 import {DataBaseConnector} from './mongo-client-wrapper';
-import {UserModel} from "./models/user.model";
+import App from './app';
+import {Product, ProductModel, PRODUCTS_COLLECTION} from "./models/product.model";
 
 
 const URL = 'mongodb://localhost:27017/mydatabase';
 
 async function connectToDataBase(url) {
-    const DB = await DataBaseConnector.connectMongoDB(url);
-    return DB;
+    return await DataBaseConnector.connectMongoDB(url);
 }
 
 connectToDataBase(URL).then((db) => {
-    const userData = {
-        name: 'Misha',
-        phone: '12321312'
+    const userData: Product = {
+        image: 'Misha',
+        title: '12321312',
+        description: 'Test Desc',
+        price: 12
     };
-    const user = new UserModel(userData);
+    const product: ProductModel = new ProductModel(userData);
+    // product.addToCollection();
+
+    // setTimeout(() => {
+    //     const userData: Product = {
+    //         image: 'TEST PRODUCT',
+    //         title: '12321312',
+    //         description: 'Test Desc',
+    //         price: 6
+    //     };
+    //     new ProductModel(userData)
+    //         .addToCollection();
+    // }, 2000);
     // user.addToCollection();
     // console.log(user.collection);
     // db.collections().then(collections => {
     //     console.log(collections);
     // })
-    db.collection('user').find({}).toArray().then(array => {
-        array.forEach(user => console.log(user))
-    })
+    // db.collection(PRODUCTS_COLLECTION).find({}).toArray().then(array => {
+    //     array.forEach(user => console.log(user))
+    // })
 });
 
 
@@ -39,12 +52,8 @@ connectToDataBase(URL).then((db) => {
 //     we're connected!
 // });
 
-const app = express();
-app.get('/', function (req, res) {
-    res.send('hoy');
-});
 
-export const server = http.createServer(app).listen(1234, function(err) {
+export const server = http.createServer(App).listen(1234, function(err) {
     if (err) {
         console.log(err);
     } else {

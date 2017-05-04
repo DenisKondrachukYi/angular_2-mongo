@@ -9,6 +9,6 @@ const USER_COLLECTION = 'user';
 
 export class UserModel extends DataBaseModel<User> {
 
-    collection: string = USER_COLLECTION;
+    protected collection: string = USER_COLLECTION;
 
 }

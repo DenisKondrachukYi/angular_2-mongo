@@ -1,7 +1,8 @@
-import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
+import { DataBaseConnector } from './mongo-client-wrapper';
+import {PRODUCTS_COLLECTION} from "./models/product.model";
 
 // Creates and configures an ExpressJS web server.
 class App {
@@ -33,6 +34,12 @@ class App {
         router.get('/', (req, res, next) => {
             res.json({
                 message: 'Hello World!'
+            });
+        });
+        router.get('/products', async (req, res, next) => {
+            const products = await DataBaseConnector.dataBase.collection(PRODUCTS_COLLECTION).find({}).toArray();
+            res.json({
+                message: products
             });
         });
         this.express.use('/', router);
